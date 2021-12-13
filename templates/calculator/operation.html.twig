@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony5 - Calculator{% endblock %}
+
+{% block body %}
+    <div id="page-wrap" class="form-calculator">
+        <h1>Symfony5 - Calculator</h1>
+
+        {{ form_start(calculatorForm) }}
+            {{ form_row(calculatorForm.result, {
+                value: result
+            }) }}
+            {{ form_row(calculatorForm.operandA) }}
+            {{ form_row(calculatorForm.operandB) }}
+            {{ form_row(calculatorForm.operator) }}
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            </div>
+        {{ form_end(calculatorForm) }}
+
+    </div>
+{% endblock %}

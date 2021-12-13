@@ -1,0 +1,9 @@
+path:
+  - ./bin
+  - ./config,
+  - ./public,
+  - ./src 
+jobs: 10
+no-cache: /tmp/phplint.cache
+extensions:
+  - php

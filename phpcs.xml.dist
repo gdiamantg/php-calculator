@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<ruleset  name="PHP_CodeSniffer">
+    <description>PHPCS configuration file.</description>
+    <!-- check all files in the app directory, feel free to add more files with: <file>FOLDER NAME</file> -->
+    <file>bin</file>
+    <file>config</file>
+    <file>public</file>
+    <file>src</file>
+
+    <!-- exclude following directories from the violation check-->
+     <exclude-pattern>*/tests/*</exclude-pattern>
+     <exclude-pattern>*/data/*</exclude-pattern>
+     <exclude-pattern>*/vendor/*</exclude-pattern>
+
+    <!--
+        hard-code command line values
+    -->
+    <arg name="extensions" value="php,inc" />
+    <arg name="report" value="full,summary,gitblame"/>
+    <arg name="colors"/>
+    <arg value="snp"/>
+
+    <!--
+        hard-code custom php.ini settings
+    -->
+    <ini name="memory_limit" value="512M"/>
+
+    <!-- Our base rule: set to PSR2-->
+    <rule  ref="PSR2"/>
+
+    <!-- Include some specific sniffs from the Squiz standard. -->
+    <rule ref="Squiz.PHP.CommentedOutCode"/>
+    <!--
+       Include some specific sniffs from the Generic standard.
+       Note again that the name of the sniff is the code that
+       PHP_CodeSniffer gives it.
+    -->
+    <rule ref="Generic.Commenting.Todo.CommentFound">
+        <message>Please review this TODO comment: %s</message>
+        <severity>1</severity>
+        <type>error</type>
+    </rule>
+    <!--
+        Array values are specified by using "element" tags
+        with "key" and "value" attributes.
+
+        NOTE: This syntax is is only supported in PHP_CodeSniffer
+        versions 3.3.0 and greater.
+    -->
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="delete" value="unset"/>
+                <element key="print" value="echo"/>
+                <element key="var_dump" value="null"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>
